@@ -1,6 +1,10 @@
 import Home from '@/pages/Home';
 import Following from '@/pages/Following';
 import Profile from '@/pages/Profile';
+import Upload from '@/pages/Upload';
+import Search from '@/pages/Search';
+
+import { OnlyHeaderLayout } from '@/components/Layout';
 
 const publicRoutes = [
   {
@@ -14,6 +18,16 @@ const publicRoutes = [
   {
     path: '/profile',
     component: Profile,
+  },
+  {
+    path: '/upload',
+    component: Upload,
+    layout: OnlyHeaderLayout,
+  },
+  {
+    path: '/search',
+    component: Search,
+    layout: null,
   },
 ];
 
