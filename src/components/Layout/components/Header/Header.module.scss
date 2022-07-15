@@ -1,4 +1,5 @@
-@use '../../../../sass/variables' as *;
+@use '../../../../assets/sass/variables' as *;
+@use '../../../../assets/sass/mixin' as *;
 
 .wrapper {
   height: $default-layout-header-height;
@@ -11,4 +12,89 @@
 .content {
   height: 100%;
   width: $default-layout-width;
+  @include flex(center, space-between);
+}
+
+.search {
+  width: 361px;
+  height: 46px;
+  background-color: $light-grey-color;
+  border: 1.5px solid transparent;
+  border-radius: 92px;
+  padding: 12px 0 12px 16px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &::after {
+    content: '';
+    width: 1px;
+    height: 28px;
+    background-color: rgba(22, 24, 35, 0.12);
+    position: absolute;
+    top: 50%;
+    right: $search-button-width;
+    transform: translateY(-50%);
+  }
+
+  &:focus-within {
+    border-color: rgba(22, 24, 35, 0.2);
+  }
+
+  input {
+    flex: 1;
+    font-size: 1.6rem;
+    font-family: $primary-font;
+    font-weight: 400;
+    line-height: 22px;
+    color: $dark-grey-color;
+    background-color: transparent;
+    caret-color: $primary-color;
+
+    &:not(:placeholder-shown) ~ .search__button {
+      color: rgba(22, 24, 35, 0.75);
+    }
+  }
+
+  &__clear,
+  &__loading {
+    color: rgba(22, 24, 35, 0.34);
+    margin: 0 12px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__loading,
+  &__clear {
+    display: none;
+  }
+
+  &__button {
+    width: $search-button-width;
+    height: inherit;
+    @include flex(center, center);
+    border: inherit;
+    border-left: none;
+    border-right: none;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+    color: rgba($search-button-color, 0.34);
+
+    &:hover {
+      background-color: rgba($search-button-color, 0.03);
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgba($search-button-color, 0.06);
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
 }
