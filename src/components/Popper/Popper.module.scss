@@ -1,0 +1,11 @@
+@use '../../assets/sass/variables' as *;
+
+.wrapper {
+  width: 100%;
+  min-height: 100px;
+  max-height: min((100vh - 96px) - $default-layout-header-height, 734px);
+  background-color: $white-color;
+  border-radius: 8px;
+  box-shadow: 0px 2px 12px rgb(0 0 0 / 12%);
+  padding-top: 8px;
+}

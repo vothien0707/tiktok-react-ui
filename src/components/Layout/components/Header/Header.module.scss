@@ -15,8 +15,12 @@
   @include flex(center, space-between);
 }
 
+.search,
+.search-result {
+  width: $search-width;
+}
+
 .search {
-  width: 361px;
   height: 46px;
   background-color: $light-grey-color;
   border: 1.5px solid transparent;
@@ -96,5 +100,11 @@
       width: 22px;
       height: 22px;
     }
+  }
+
+  &-result__title {
+    font-size: 1.4rem;
+    color: rgba(22, 24, 35, 0.5);
+    padding: 5px 12px;
   }
 }

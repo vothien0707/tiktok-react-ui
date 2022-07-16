@@ -1,0 +1,40 @@
+@use '../../assets/sass/variables' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+    cursor: pointer;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.info {
+  flex: 1;
+
+  &__name {
+    color: $txt-color;
+    line-height: 22px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: $check-color;
+      margin-left: 6px;
+    }
+  }
+
+  &__id {
+    font-size: 1.4rem;
+    color: rgba(22, 24, 35, 0.5);
+  }
+}
