@@ -80,7 +80,8 @@
     width: $search-button-width;
     height: inherit;
     @include flex(center, center);
-    border: inherit;
+    border-top: inherit;
+    border-bottom: inherit;
     border-left: none;
     border-right: none;
     border-top-right-radius: inherit;
@@ -106,5 +107,21 @@
     font-size: 1.4rem;
     color: rgba(22, 24, 35, 0.5);
     padding: 5px 12px;
+  }
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0 16px;
+
+  &__more {
+    width: 20px;
+    height: 20px;
+    @include flex(center, center);
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
