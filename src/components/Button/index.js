@@ -1,7 +1,5 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Button.module.scss';
 
@@ -60,17 +58,9 @@ function Button({
 
   return (
     <Component className={classes} {...props}>
-      {leftIcon && (
-        <span className={cx('icon')}>
-          <FontAwesomeIcon icon={faPlus} />
-        </span>
-      )}
+      {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
       <span className={cx('title')}>{children}</span>
-      {rightIcon && (
-        <span className={cx('icon')}>
-          <FontAwesomeIcon icon={faPlus} />
-        </span>
-      )}
+      {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
     </Component>
   );
 }

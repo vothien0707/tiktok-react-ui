@@ -5,17 +5,38 @@ import {
   faSpinner,
   faMagnifyingGlass,
   faEllipsisVertical,
+  faPlus,
+  faGlobe,
+  faCircleQuestion,
+  faKeyboard,
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 
 import styles from './Header.module.scss';
 import images from '@/assets/images';
-import { wrapper as PopperWrapper } from '@/components/Popper';
+import { wrapper as DropdownWrapper } from '@/components/Dropdown';
 import AccountItem from '@/components/AccountItem';
 import Button from '@/components/Button';
+import Menu from '@/components/Menu';
 
 const cx = classNames.bind(styles);
+
+const MENU__ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faGlobe} />,
+    title: 'English',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    title: 'Feedback and help',
+    to: '/help',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    title: 'Keyboard shortcuts',
+  },
+];
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -35,12 +56,12 @@ function Header() {
           visible={searchResult.length > 0}
           render={(attrs) => (
             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
+              <DropdownWrapper>
                 <h4 className={cx('search-result__title')}>Accounts</h4>
                 <AccountItem />
                 <AccountItem />
                 <AccountItem />
-              </PopperWrapper>
+              </DropdownWrapper>
             </div>
           )}
         >
@@ -62,13 +83,15 @@ function Header() {
           </div>
         </Tippy>
         <div className={cx('action')}>
-          <Button outline upload leftIcon>
+          <Button outline upload leftIcon={<FontAwesomeIcon icon={faPlus} />}>
             Upload
           </Button>
           <Button primary>Log in</Button>
-          <div className={cx('action__more')}>
-            <FontAwesomeIcon icon={faEllipsisVertical} />
-          </div>
+          <Menu menuItems={MENU__ITEMS}>
+            <button className={cx('action__more')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </Menu>
         </div>
       </div>
     </header>

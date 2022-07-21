@@ -10,7 +10,11 @@
   font-size: 1.6rem;
   font-weight: 700;
   font-family: $primary-font;
-  @include flex(center, center);
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
   &.disabled {
     pointer-events: none;
@@ -23,14 +27,13 @@
   margin-left: 8px;
 }
 
-// Button type
-
-.primary,
-.outline {
-  &:hover {
-    cursor: pointer;
-  }
+.icon {
+  width: 20px;
+  height: 20px;
+  @include flex(center, center);
 }
+
+// Button type
 
 .primary {
   color: $white-color;
