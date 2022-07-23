@@ -26,6 +26,42 @@ const MENU__ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faGlobe} />,
     title: 'English',
+    // sub menu
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi',
+          title: 'Tiếng Việt',
+        },
+        {
+          type: 'language',
+          code: 'fr',
+          title: 'French',
+        },
+        {
+          type: 'language',
+          code: 'ja',
+          title: 'Japanese',
+        },
+        {
+          type: 'language',
+          code: 'it',
+          title: 'Italian',
+        },
+        {
+          type: 'language',
+          code: 'es',
+          title: 'Spanish',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -46,6 +82,16 @@ function Header() {
       setSearchResult([]);
     }, 0);
   }, []);
+
+  const handleMenuSelect = (menuItem) => {
+    switch (menuItem.type) {
+      case 'language':
+        console.log(menuItem);
+        break;
+      default:
+        console.log('Not exist type for menuItem');
+    }
+  };
 
   return (
     <header className={cx('wrapper')}>
@@ -87,7 +133,7 @@ function Header() {
             Upload
           </Button>
           <Button primary>Log in</Button>
-          <Menu menuItems={MENU__ITEMS}>
+          <Menu menuItems={MENU__ITEMS} onSelect={handleMenuSelect}>
             <button className={cx('action__more')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>

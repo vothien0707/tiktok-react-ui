@@ -7,6 +7,7 @@
     padding: 10px 16px;
     border-radius: 0;
     font-weight: 600;
+    line-height: 20px;
     color: unset;
 
     &:hover {
@@ -17,4 +18,31 @@
 
 .menu-wrapper {
   padding-bottom: 8px;
+}
+
+.menu-header {
+  position: relative;
+  height: 50px;
+  margin-top: -8px;
+
+  &__back {
+    width: 48px;
+    height: 100%;
+    background-color: transparent;
+    font-weight: 600;
+    cursor: pointer;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+  }
 }

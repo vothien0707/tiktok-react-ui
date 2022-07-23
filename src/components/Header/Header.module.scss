@@ -1,5 +1,5 @@
-@use '../../../../assets/sass/variables' as *;
-@use '../../../../assets/sass/mixin' as *;
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixin' as *;
 
 .wrapper {
   height: $default-layout-header-height;
@@ -12,6 +12,7 @@
 .content {
   height: 100%;
   width: $default-layout-width;
+  padding: 0 $default-layout-horizontal-space;
   @include flex(center, space-between);
 }
 
