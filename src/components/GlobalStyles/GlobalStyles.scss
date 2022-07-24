@@ -1,7 +1,7 @@
 @use '../../assets/sass/variables' as *;
 
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
   margin: 0;
@@ -16,7 +16,7 @@ html {
 body {
   font-family: $primary-font;
   font-size: 1.6rem;
-  line-height: 1.5;
+  line-height: 1;
   text-rendering: optimizeSpeed;
 }
 
@@ -29,4 +29,22 @@ input,
 
 a {
   text-decoration: none;
+}
+
+// Custom style tippy
+
+body .tippy-box {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $white-color;
+  background-color: rgba(84, 84, 84, 0.92);
+  border-radius: 8px;
+
+  .tippy-content {
+    padding: 8px;
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+  }
 }

@@ -1,17 +1,36 @@
+@use '../../assets/sass/variables' as *;
+
 .menu {
   width: 223px;
 
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid $white-color;
+    position: absolute;
+    top: -8px;
+    right: 26px;
+  }
+
   &__item {
-    width: 100%;
     justify-content: flex-start;
+    width: 100%;
     padding: 10px 16px;
     border-radius: 0;
+    font-size: 1.5rem;
     font-weight: 600;
     line-height: 20px;
-    color: unset;
+    color: $txt-color;
 
     &:hover {
-      background-color: rgba(22, 24, 35, 0.03);
+      background-color: rgba($txt-color, 0.03);
+    }
+
+    &.separate {
+      border-top: 1px solid rgba($txt-color, 0.12);
     }
   }
 }

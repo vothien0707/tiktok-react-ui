@@ -18,7 +18,6 @@ function Menu({ menuItems = [], children, onSelect = defaultFunctions }) {
   const renderMenuItems = () => {
     return current.data.map((menuItem, index) => {
       const isParrent = !!menuItem.children;
-
       return (
         <MenuItem
           key={index}
@@ -38,10 +37,10 @@ function Menu({ menuItems = [], children, onSelect = defaultFunctions }) {
 
   return (
     <Tippy
-      visible
       interactive
       placement="bottom-end"
       delay={[0, 600]} //[show, hide]/ms
+      offset={[20, 10]}
       render={(attrs) => (
         <div className={cx('menu')} tabIndex="-1" {...attrs}>
           <DropdownWrapper className={cx('menu-wrapper')}>
@@ -59,6 +58,7 @@ function Menu({ menuItems = [], children, onSelect = defaultFunctions }) {
           </DropdownWrapper>
         </div>
       )}
+      onHide={() => setHistory((prevState) => prevState.slice(0, 1))}
     >
       {children}
     </Tippy>

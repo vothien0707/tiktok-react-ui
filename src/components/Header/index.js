@@ -9,9 +9,17 @@ import {
   faGlobe,
   faCircleQuestion,
   faKeyboard,
+  faSquareArrowUpRight,
+  faCommentDots,
+  faUser,
+  faCoins,
+  faGear,
+  faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import HeadlessTippy from '@tippyjs/react/headless';
 
 import styles from './Header.module.scss';
 import images from '@/assets/images';
@@ -74,8 +82,35 @@ const MENU__ITEMS = [
   },
 ];
 
+const LOGIN__MENU__ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faUser} />,
+    title: 'View profile',
+    to: '/profile',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCoins} />,
+    title: 'Get coins',
+    to: '/coin',
+  },
+  {
+    icon: <FontAwesomeIcon icon={faGear} />,
+    title: 'Settings',
+    to: '/settings',
+  },
+  ...MENU__ITEMS,
+  {
+    icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+    title: 'Log out',
+    to: '/logout',
+    separate: true,
+  },
+];
+
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
+
+  const isLogin = true;
 
   useEffect(() => {
     setTimeout(() => {
@@ -97,7 +132,7 @@ function Header() {
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
         <img src={images.logo} alt="logo" />
-        <Tippy
+        <HeadlessTippy
           interactive
           visible={searchResult.length > 0}
           render={(attrs) => (
@@ -127,16 +162,45 @@ function Header() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
-        </Tippy>
+        </HeadlessTippy>
+
         <div className={cx('action')}>
           <Button outline upload leftIcon={<FontAwesomeIcon icon={faPlus} />}>
             Upload
           </Button>
-          <Button primary>Log in</Button>
-          <Menu menuItems={MENU__ITEMS} onSelect={handleMenuSelect}>
-            <button className={cx('action__more')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </button>
+
+          {isLogin ? (
+            <>
+              <Tippy content="Messages" placement="bottom" delay={[0, 200]}>
+                <button className={cx('action__message')}>
+                  <FontAwesomeIcon icon={faSquareArrowUpRight} />
+                </button>
+              </Tippy>
+              <Tippy content="Inbox" placement="bottom">
+                <button className={cx('action__inbox')}>
+                  <FontAwesomeIcon icon={faCommentDots} />
+                </button>
+              </Tippy>
+            </>
+          ) : (
+            <Button primary>Log in</Button>
+          )}
+
+          <Menu
+            menuItems={isLogin ? LOGIN__MENU__ITEMS : MENU__ITEMS}
+            onSelect={handleMenuSelect}
+          >
+            {isLogin ? (
+              <img
+                className={cx('action__avatar')}
+                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/1ad302cf869c6a21927085e073e5dfb9~c5_100x100.jpeg?x-expires=1658746800&x-signature=Brohl32w%2BeLWyDy5l88dz%2FBol0A%3D"
+                alt="user name"
+              />
+            ) : (
+              <button className={cx('action__more')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
+            )}
           </Menu>
         </div>
       </div>

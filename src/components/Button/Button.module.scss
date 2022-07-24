@@ -56,22 +56,23 @@
 
   &:hover {
     border-color: currentColor;
-    background-color: rgba(22, 24, 35, 0.03);
+    background-color: rgba($txt-color, 0.03);
   }
 }
 
 .upload {
   min-width: 110px;
   color: $txt-color;
-  border-color: rgba(22, 24, 35, 0.12);
+  font-weight: 600;
+  border-color: rgba($txt-color, 0.12);
   background-color: $white-color;
 
   &:hover {
-    border-color: rgba(22, 24, 35, 0.12);
+    border-color: rgba($txt-color, 0.12);
   }
 
   &.rounded:hover {
-    border-color: rgba(22, 24, 35, 0.2);
+    border-color: rgba($txt-color, 0.2);
   }
 }
 
