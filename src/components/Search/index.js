@@ -11,8 +11,8 @@ import HeadlessTippy from '@tippyjs/react/headless';
 
 import classNames from 'classnames/bind';
 
+import { useDebounce } from '@/hooks';
 import { wrapper as DropdownWrapper } from '@/components/Dropdown';
-import { ClearIcon } from '@/components/Icons';
 import AccountItem from '@/components/AccountItem';
 
 import styles from './Search.module.scss';
@@ -25,10 +25,12 @@ function Search() {
   const [showResult, setShowResult] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
 
+  const debounce = useDebounce(searchInput, 500);
+
   const inputRef = useRef();
 
   useEffect(() => {
-    if (!searchInput.trim()) {
+    if (!debounce.trim()) {
       setSearchResults([]);
       return;
     }
@@ -37,7 +39,7 @@ function Search() {
 
     fetch(
       `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        searchInput,
+        debounce,
       )}&type=less`,
     )
       .then((res) => res.json())
@@ -48,7 +50,7 @@ function Search() {
       .catch(() => {
         setShowLoading(false);
       });
-  }, [searchInput]);
+  }, [debounce]);
 
   const handleClearInput = () => {
     setSearchInput('');
@@ -59,8 +61,6 @@ function Search() {
   const handleHideResult = () => {
     setShowResult(false);
   };
-
-  console.log(searchInput);
 
   return (
     <HeadlessTippy
@@ -90,7 +90,7 @@ function Search() {
 
         {!!searchInput && !showLoading && (
           <button className={cx('search__clear')} onClick={handleClearInput}>
-            <ClearIcon />
+            <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         )}
 
