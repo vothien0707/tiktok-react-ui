@@ -14,6 +14,7 @@ import classNames from 'classnames/bind';
 import { useDebounce } from '@/hooks';
 import { wrapper as DropdownWrapper } from '@/components/Dropdown';
 import AccountItem from '@/components/AccountItem';
+import * as searchServices from '@/apiServices/searchServices';
 
 import styles from './Search.module.scss';
 
@@ -35,21 +36,16 @@ function Search() {
       return;
     }
 
-    setShowLoading(true);
+    const fecthApi = async () => {
+      setShowLoading(true);
 
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounce,
-      )}&type=less`,
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResults(res.data);
-        setShowLoading(false);
-      })
-      .catch(() => {
-        setShowLoading(false);
-      });
+      const result = await searchServices.search(debounce);
+      setSearchResults(result);
+
+      setShowLoading(false);
+    };
+
+    fecthApi();
   }, [debounce]);
 
   const handleClearInput = () => {
