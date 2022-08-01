@@ -11,7 +11,12 @@ const cx = classNames.bind(styles);
 
 const defaultFunctions = () => {}; // Mac dinh khi khong truyen props onSelect
 
-function Menu({ menuItems = [], children, onSelect = defaultFunctions }) {
+function Menu({
+  menuItems = [],
+  hideOnClick = false,
+  children,
+  onSelect = defaultFunctions,
+}) {
   const [history, setHistory] = useState([{ data: menuItems }]);
   const current = history[history.length - 1];
 
@@ -41,6 +46,7 @@ function Menu({ menuItems = [], children, onSelect = defaultFunctions }) {
       placement="bottom-end"
       delay={[0, 600]} //[show, hide]/ms
       offset={[20, 10]}
+      hideOnClick={hideOnClick}
       render={(attrs) => (
         <div className={cx('menu')} tabIndex="-1" {...attrs}>
           <DropdownWrapper className={cx('menu-wrapper')}>
