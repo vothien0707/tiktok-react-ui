@@ -42,7 +42,7 @@
     background-color: transparent;
     caret-color: $primary-color;
 
-    &:not(:placeholder-shown) ~ .search__button {
+    &:not(:placeholder-shown) ~ .search__submit {
       color: rgba($txt-color, 0.75);
     }
   }
@@ -67,7 +67,7 @@
     }
   }
 
-  &__button {
+  &__submit {
     width: $search-button-width;
     height: inherit;
     @include flex(center, center);
