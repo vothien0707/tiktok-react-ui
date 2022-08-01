@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEllipsisVertical,
@@ -21,8 +23,9 @@ import 'tippy.js/dist/tippy.css';
 import Search from '@/components/Search';
 import Button from '@/components/Button';
 import Menu from '@/components/Menu';
-import Image from '@/components/Image';
 
+import routesConfig from '@/config/routes';
+import Image from '@/components/Image';
 import images from '@/assets/images';
 import styles from './Header.module.scss';
 
@@ -121,7 +124,9 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
-        <img src={images.logo} alt="logo" />
+        <Link to={routesConfig.home}>
+          <img src={images.logo} alt="logo" />
+        </Link>
 
         <Search />
 
