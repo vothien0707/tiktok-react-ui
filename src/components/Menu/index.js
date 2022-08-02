@@ -60,7 +60,7 @@ function Menu({
                 }}
               />
             )}
-            {renderMenuItems()}
+            <div className={cx('menu-content')}>{renderMenuItems()}</div>
           </DropdownWrapper>
         </div>
       )}

@@ -40,6 +40,7 @@
 }
 
 .menu-header {
+  flex-shrink: 0;
   position: relative;
   height: 50px;
   margin-top: -8px;
@@ -64,4 +65,8 @@
     transform: translate(-50%, -50%);
     font-weight: 600;
   }
+}
+
+.menu-content {
+  overflow-y: auto;
 }
