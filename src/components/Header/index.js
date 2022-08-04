@@ -24,7 +24,7 @@ import Search from '@/components/Search';
 import Button from '@/components/Button';
 import Menu from '@/components/Menu';
 
-import routesConfig from '@/config/routes';
+import config from '@/config';
 import Image from '@/components/Image';
 import images from '@/assets/images';
 import styles from './Header.module.scss';
@@ -124,7 +124,7 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('content')}>
-        <Link to={routesConfig.home}>
+        <Link to={config.routesConfig.home}>
           <img src={images.logo} alt="logo" />
         </Link>
 

@@ -14,7 +14,7 @@ import classNames from 'classnames/bind';
 import { useDebounce } from '@/hooks';
 import { wrapper as DropdownWrapper } from '@/components/Dropdown';
 import AccountItem from '@/components/AccountItem';
-import * as searchServices from '@/apiServices/searchServices';
+import * as searchServices from '@/services/searchService';
 
 import styles from './Search.module.scss';
 
@@ -36,7 +36,7 @@ function Search() {
       return;
     }
 
-    const fecthApi = async () => {
+    const fetchApi = async () => {
       setShowLoading(true);
 
       const result = await searchServices.search(debounce);
@@ -45,7 +45,7 @@ function Search() {
       setShowLoading(false);
     };
 
-    fecthApi();
+    fetchApi();
   }, [debounce]);
 
   const handleClearInput = () => {
@@ -67,52 +67,56 @@ function Search() {
   };
 
   return (
-    <HeadlessTippy
-      interactive
-      visible={showResult && searchResults.length > 0}
-      render={(attrs) => (
-        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-          <DropdownWrapper>
-            <h4 className={cx('search-result__title')}>Accounts</h4>
-            {searchResults.map((searchResult) => (
-              <AccountItem key={searchResult.id} data={searchResult} />
-            ))}
-          </DropdownWrapper>
-        </div>
-      )}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx('search')}>
-        <input
-          ref={inputRef}
-          value={searchInput}
-          placeholder="Search accounts and videos"
-          spellCheck={false}
-          onChange={handleChangeInput}
-          onFocus={() => setShowResult(true)}
-        />
-
-        {!!searchInput && !showLoading && (
-          <button className={cx('search__clear')} onClick={handleClearInput}>
-            <FontAwesomeIcon icon={faCircleXmark} />
-          </button>
+    /* Using a wrapper <div> tag around the reference element solves 
+    this by creating a new parentNode context. */
+    <div>
+      <HeadlessTippy
+        interactive
+        visible={showResult && searchResults.length > 0}
+        render={(attrs) => (
+          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+            <DropdownWrapper>
+              <h4 className={cx('search-result__title')}>Accounts</h4>
+              {searchResults.map((searchResult) => (
+                <AccountItem key={searchResult.id} data={searchResult} />
+              ))}
+            </DropdownWrapper>
+          </div>
         )}
-
-        {showLoading && (
-          <FontAwesomeIcon
-            className={cx('search__loading')}
-            icon={faCircleNotch}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('search')}>
+          <input
+            ref={inputRef}
+            value={searchInput}
+            placeholder="Search accounts and videos"
+            spellCheck={false}
+            onChange={handleChangeInput}
+            onFocus={() => setShowResult(true)}
           />
-        )}
 
-        <button
-          className={cx('search__submit')}
-          onMouseDown={(e) => e.preventDefault()}
-        >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
-      </div>
-    </HeadlessTippy>
+          {!!searchInput && !showLoading && (
+            <button className={cx('search__clear')} onClick={handleClearInput}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
+
+          {showLoading && (
+            <FontAwesomeIcon
+              className={cx('search__loading')}
+              icon={faCircleNotch}
+            />
+          )}
+
+          <button
+            className={cx('search__submit')}
+            onMouseDown={(e) => e.preventDefault()}
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
+        </div>
+      </HeadlessTippy>
+    </div>
   );
 }
 

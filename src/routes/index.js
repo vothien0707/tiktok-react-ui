@@ -1,4 +1,4 @@
-import routesConfig from '@/config/routes';
+import config from '@/config';
 
 import Home from '@/pages/Home';
 import Following from '@/pages/Following';
@@ -6,28 +6,28 @@ import Profile from '@/pages/Profile';
 import Upload from '@/pages/Upload';
 import Search from '@/pages/Search';
 
-import { OnlyHeaderLayout } from '@/components/Layout';
+import { OnlyHeaderLayout } from '@/layouts';
 
 const publicRoutes = [
   {
-    path: routesConfig.home,
+    path: config.routesConfig.home,
     component: Home,
   },
   {
-    path: routesConfig.following,
+    path: config.routesConfig.following,
     component: Following,
   },
   {
-    path: routesConfig.profile,
+    path: config.routesConfig.profile,
     component: Profile,
   },
   {
-    path: routesConfig.upload,
+    path: config.routesConfig.upload,
     component: Upload,
     layout: OnlyHeaderLayout,
   },
   {
-    path: routesConfig.search,
+    path: config.routesConfig.search,
     component: Search,
     layout: null,
   },
