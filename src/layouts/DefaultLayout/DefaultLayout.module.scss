@@ -8,6 +8,7 @@
 
 .container {
   width: $default-layout-width;
+  max-width: 100%;
   padding: 0 $default-layout-horizontal-space;
   margin-top: $default-layout-header-height;
   display: flex;

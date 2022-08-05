@@ -5,6 +5,7 @@ import Following from '@/pages/Following';
 import Profile from '@/pages/Profile';
 import Upload from '@/pages/Upload';
 import Search from '@/pages/Search';
+import Live from '@/pages/Live';
 
 import { OnlyHeaderLayout } from '@/layouts';
 
@@ -30,6 +31,10 @@ const publicRoutes = [
     path: config.routesConfig.search,
     component: Search,
     layout: null,
+  },
+  {
+    path: config.routesConfig.live,
+    component: Live,
   },
 ];
 
